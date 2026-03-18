@@ -69,6 +69,8 @@ Result:
 
 Use this if you already have Hermes installed or cloned and want the CaMeL build available there without replacing your current branch.
 
+There is no extra mode flag for this. Point `--target` at your existing Hermes checkout and `camelup` will detect that it is an existing repo and switch into non-destructive branch-wiring mode.
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/nativ3ai/camelup/main/bin/camelup -o /tmp/camelup
 chmod +x /tmp/camelup
@@ -85,6 +87,34 @@ Result:
 6. checks out `camel-main`
 
 This means you keep your original Hermes repo, remotes, and branches. `camelup` just adds a parallel guarded branch you can switch to.
+
+Existing Hermes user flow:
+
+1. inspect your current repo state:
+
+```bash
+/tmp/camelup status --target ~/src/hermes-agent
+```
+
+2. wire in the guarded branch:
+
+```bash
+/tmp/camelup install --target ~/src/hermes-agent
+```
+
+3. confirm the guarded branch is active:
+
+```bash
+/tmp/camelup verify --target ~/src/hermes-agent
+/tmp/camelup status --target ~/src/hermes-agent
+```
+
+4. if you want to return to your original Hermes branch later:
+
+```bash
+cd ~/src/hermes-agent
+git checkout main
+```
 
 ## Commands
 
