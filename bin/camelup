@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+CAMEL_REPO = "https://github.com/nativ3ai/hermes-agent-camel.git"
+CAMEL_REMOTE = "camel"
+CAMEL_BRANCH = "main"
+LOCAL_BRANCH = "camel-main"
+
+
+def run(cmd: list[str], cwd: Path | None = None, check: bool = True) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(cmd, cwd=str(cwd) if cwd else None, text=True, capture_output=True, check=check)
+
+
+def has_cmd(name: str) -> bool:
+    return shutil.which(name) is not None
+
+
+def doctor() -> int:
+    checks = [("git", has_cmd("git")), ("python3", has_cmd("python3")), ("curl", has_cmd("curl"))]
+    missing = [name for name, ok in checks if not ok]
+    for name, ok in checks:
+        print(f"{'OK ' if ok else 'MISS'} {name}")
+    if missing:
+        print(f"Missing dependencies: {', '.join(missing)}", file=sys.stderr)
+        return 1
+    return 0
+
+
+def looks_like_git_repo(path: Path) -> bool:
+    return (path / ".git").exists()
+
+
+def looks_like_hermes(path: Path) -> bool:
+    return (path / "run_agent.py").exists() and (path / "hermes_cli").exists()
+
+
+def ensure_clean_repo(path: Path) -> None:
+    result = run(["git", "status", "--porcelain"], cwd=path)
+    if result.stdout.strip():
+        raise SystemExit("Target repo has local changes. Commit, stash, or clean them first.")
+
+
+def clone_install(target: Path) -> int:
+    parent = target.parent
+    parent.mkdir(parents=True, exist_ok=True)
+    if target.exists() and any(target.iterdir()):
+        raise SystemExit(f"Target {target} exists and is not empty.")
+    if target.exists() and not any(target.iterdir()):
+        target.rmdir()
+    print(f"Cloning {CAMEL_REPO} -> {target}")
+    subprocess.run(["git", "clone", CAMEL_REPO, str(target)], check=True)
+    return 0
+
+
+def apply_to_existing(target: Path) -> int:
+    if not looks_like_git_repo(target):
+        raise SystemExit(f"Target {target} is not a git repository.")
+    if not looks_like_hermes(target):
+        raise SystemExit(f"Target {target} does not look like a Hermes checkout.")
+    ensure_clean_repo(target)
+
+    remotes = run(["git", "remote"], cwd=target).stdout.split()
+    if CAMEL_REMOTE in remotes:
+        run(["git", "remote", "set-url", CAMEL_REMOTE, CAMEL_REPO], cwd=target)
+    else:
+        run(["git", "remote", "add", CAMEL_REMOTE, CAMEL_REPO], cwd=target)
+
+    run(["git", "fetch", CAMEL_REMOTE, CAMEL_BRANCH], cwd=target)
+    run(["git", "checkout", "-B", LOCAL_BRANCH, f"{CAMEL_REMOTE}/{CAMEL_BRANCH}"], cwd=target)
+    print(f"Checked out {LOCAL_BRANCH} from {CAMEL_REMOTE}/{CAMEL_BRANCH}")
+    return 0
+
+
+def verify(target: Path) -> int:
+    required = [
+        target / "agent" / "camel_guard.py",
+        target / "docs" / "camel-benchmark.md",
+        target / "tests" / "agent" / "test_camel_guard.py",
+    ]
+    missing = [str(path) for path in required if not path.exists()]
+    if missing:
+        print("Missing expected CaMeL files:", file=sys.stderr)
+        for path in missing:
+            print(f"- {path}", file=sys.stderr)
+        return 1
+    branch = run(["git", "branch", "--show-current"], cwd=target).stdout.strip()
+    rev = run(["git", "rev-parse", "--short", "HEAD"], cwd=target).stdout.strip()
+    print(f"OK target={target}")
+    print(f"OK branch={branch}")
+    print(f"OK rev={rev}")
+    print("OK camel files present")
+    return 0
+
+
+def install(target: Path) -> int:
+    if target.exists() and any(target.iterdir()):
+        return apply_to_existing(target)
+    return clone_install(target)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Install the CaMeL-integrated Hermes build")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    sub.add_parser("doctor", help="Check required host dependencies")
+
+    install_parser = sub.add_parser("install", help="Clone the fork or attach it to an existing Hermes checkout")
+    install_parser.add_argument("--target", required=True, help="Target directory")
+
+    verify_parser = sub.add_parser("verify", help="Verify a target checkout contains the CaMeL integration")
+    verify_parser.add_argument("--target", required=True, help="Target directory")
+
+    args = parser.parse_args()
+
+    if args.command == "doctor":
+        return doctor()
+    if args.command == "install":
+        return install(Path(args.target).expanduser().resolve())
+    if args.command == "verify":
+        return verify(Path(args.target).expanduser().resolve())
+    return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
