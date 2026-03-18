@@ -32,6 +32,29 @@ def doctor() -> int:
     return 0
 
 
+def status(target: Path) -> int:
+    if not target.exists():
+        print(f"MISS target={target}")
+        return 1
+    if not looks_like_git_repo(target):
+        print(f"MISS target={target} is not a git repository")
+        return 1
+    if not looks_like_hermes(target):
+        print(f"MISS target={target} does not look like a Hermes checkout")
+        return 1
+
+    remotes = run(["git", "remote"], cwd=target).stdout.split()
+    branch = run(["git", "branch", "--show-current"], cwd=target).stdout.strip()
+    rev = run(["git", "rev-parse", "--short", "HEAD"], cwd=target).stdout.strip()
+
+    print(f"OK target={target}")
+    print(f"OK branch={branch}")
+    print(f"OK rev={rev}")
+    print(f"OK camel_remote={'yes' if CAMEL_REMOTE in remotes else 'no'}")
+    print(f"OK camel_branch={'yes' if branch == LOCAL_BRANCH else 'no'}")
+    return 0
+
+
 def looks_like_git_repo(path: Path) -> bool:
     return (path / ".git").exists()
 
@@ -116,6 +139,9 @@ def main() -> int:
     verify_parser = sub.add_parser("verify", help="Verify a target checkout contains the CaMeL integration")
     verify_parser.add_argument("--target", required=True, help="Target directory")
 
+    status_parser = sub.add_parser("status", help="Show whether a Hermes checkout is wired to the CaMeL fork")
+    status_parser.add_argument("--target", required=True, help="Target directory")
+
     args = parser.parse_args()
 
     if args.command == "doctor":
@@ -124,6 +150,8 @@ def main() -> int:
         return install(Path(args.target).expanduser().resolve())
     if args.command == "verify":
         return verify(Path(args.target).expanduser().resolve())
+    if args.command == "status":
+        return status(Path(args.target).expanduser().resolve())
     return 1
 
 
