@@ -47,8 +47,7 @@
       <tspan x="58" dy="21">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</tspan>
     </text>
 
-    <text x="26" y="270" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="18" fill="#FFD95A">trusted control / untrusted data</text>
-    <text x="26" y="294" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="15" fill="#7E6530">explicit operator intent required for side effects</text>
+    <text x="26" y="282" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="18" fill="#FFD95A">trusted control / untrusted data</text>
   </g>
 
   <g transform="translate(520 176)">
