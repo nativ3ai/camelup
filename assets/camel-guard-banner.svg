@@ -27,13 +27,13 @@
   <g transform="translate(56 108)">
     <rect width="480" height="38" rx="10" fill="#111D2A" stroke="#C47E1B" stroke-width="1.5"/>
     <text x="18" y="25" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="22" font-weight="700" fill="#FFD95A">CaMeL Guard</text>
-    <text x="192" y="25" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="20" fill="#9E7A31">runtime trust boundary active</text>
+    <text x="192" y="25" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="20" fill="#9E7A31">runtime trust boundary</text>
   </g>
 
   <g transform="translate(56 176)">
     <rect width="430" height="306" rx="18" fill="#0D1723" stroke="#A56A18" stroke-width="1.5"/>
     <text x="26" y="36" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="20" font-weight="700" fill="#FFD95A">LIVE GUARD</text>
-    <text x="26" y="66" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="15" fill="#7E6530">guarded Hermes startup banner</text>
+    <text x="26" y="66" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="15" fill="#7E6530">guarded Hermes</text>
 
     <text xml:space="preserve" x="58" y="118" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="17" fill="#FFBF47">
       <tspan x="58" dy="0">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</tspan>
@@ -79,6 +79,6 @@
   <g transform="translate(56 506)">
     <rect width="1488" height="40" rx="12" fill="#0D1723" stroke="#A56A18" stroke-width="1.5"/>
     <text x="18" y="26" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="19" fill="#FFD95A">205 runtime tests passed</text>
-    <text x="302" y="26" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="18" fill="#8E6C21">indirect injection checks blocked terminal / messaging / memory / browser side effects while preserving authorized actions</text>
+    <text x="302" y="26" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="18" fill="#8E6C21">indirect injection checks blocked terminal/messaging/memory/browser side effects preserving authorized actions</text>
   </g>
 </svg>
