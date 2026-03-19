@@ -1,0 +1,59 @@
+<svg width="1600" height="520" viewBox="0 0 1600 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Hermes Agent CaMeL Guard</title>
+  <desc id="desc">Hermes Agent banner with CaMeL Guard runtime trust boundary active.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1520"/>
+      <stop offset="1" stop-color="#111E2B"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFD54A"/>
+      <stop offset="1" stop-color="#D18A1F"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="520" rx="24" fill="url(#bg)"/>
+  <rect x="20" y="20" width="1560" height="480" rx="18" stroke="#D18A1F" stroke-width="2" opacity="0.75"/>
+
+  <g filter="url(#glow)">
+    <text x="42" y="96" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="88" font-weight="700" fill="url(#gold)">HERMES AGENT</text>
+  </g>
+
+  <text x="48" y="136" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="24" fill="#FFBF47">CaMeL Guard</text>
+  <text x="224" y="136" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="24" fill="#8E6C21">runtime trust boundary active</text>
+
+  <g transform="translate(70 170)">
+    <text xml:space="preserve" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="19" fill="#FFBF47">
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀
+⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀
+⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    </text>
+  </g>
+
+  <g transform="translate(690 166)">
+    <rect x="0" y="0" width="835" height="280" rx="14" fill="#0D1723" stroke="#A26B1A" stroke-width="1.5" opacity="0.92"/>
+    <text x="28" y="44" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="23" font-weight="700" fill="#FFD54A">What CaMeL Adds</text>
+    <text x="28" y="92" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="21" fill="#E9E1CF">trusted control != untrusted retrieved data</text>
+    <text x="28" y="130" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="21" fill="#E9E1CF">sensitive tools gated against trusted operator intent</text>
+    <text x="28" y="168" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="21" fill="#E9E1CF">indirect prompt-injection paths blocked by default</text>
+    <text x="28" y="206" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="21" fill="#E9E1CF">authorized actions still execute when explicitly requested</text>
+    <text x="28" y="254" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="19" fill="#8E6C21">paper-inspired Hermes runtime implementation</text>
+  </g>
+
+  <text x="692" y="474" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="20" fill="#8E6C21">camelup wires the guarded build into Hermes without replacing your existing branches.</text>
+</svg>
