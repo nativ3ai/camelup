@@ -1,17 +1,17 @@
-<svg width="1600" height="520" viewBox="0 0 1600 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<svg width="1600" height="580" viewBox="0 0 1600 580" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Hermes Agent CaMeL Guard</title>
-  <desc id="desc">Hermes Agent banner with CaMeL Guard runtime trust boundary active.</desc>
+  <desc id="desc">Clean banner for the CaMeL-guarded Hermes build installed through camelup.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="520" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0B1520"/>
-      <stop offset="1" stop-color="#111E2B"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="580" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#09131D"/>
+      <stop offset="1" stop-color="#101B28"/>
     </linearGradient>
-    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#FFD54A"/>
-      <stop offset="1" stop-color="#D18A1F"/>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFD95A"/>
+      <stop offset="1" stop-color="#D88C1F"/>
     </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="blur"/>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -19,41 +19,66 @@
     </filter>
   </defs>
 
-  <rect width="1600" height="520" rx="24" fill="url(#bg)"/>
-  <rect x="20" y="20" width="1560" height="480" rx="18" stroke="#D18A1F" stroke-width="2" opacity="0.75"/>
+  <rect width="1600" height="580" rx="28" fill="url(#bg)"/>
+  <rect x="18" y="18" width="1564" height="544" rx="20" stroke="#C47E1B" stroke-width="2" opacity="0.78"/>
 
-  <g filter="url(#glow)">
-    <text x="42" y="96" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="88" font-weight="700" fill="url(#gold)">HERMES AGENT</text>
+  <text x="54" y="88" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="84" font-weight="700" fill="url(#gold)" filter="url(#softGlow)">HERMES AGENT</text>
+
+  <g transform="translate(56 108)">
+    <rect width="480" height="38" rx="10" fill="#111D2A" stroke="#C47E1B" stroke-width="1.5"/>
+    <text x="18" y="25" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="22" font-weight="700" fill="#FFD95A">CaMeL Guard</text>
+    <text x="192" y="25" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="20" fill="#9E7A31">runtime trust boundary active</text>
   </g>
 
-  <text x="48" y="136" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="24" fill="#FFBF47">CaMeL Guard</text>
-  <text x="224" y="136" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="24" fill="#8E6C21">runtime trust boundary active</text>
+  <g transform="translate(56 176)">
+    <rect width="430" height="306" rx="18" fill="#0D1723" stroke="#A56A18" stroke-width="1.5"/>
+    <text x="26" y="36" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="20" font-weight="700" fill="#FFD95A">LIVE GUARD</text>
+    <text x="26" y="66" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="15" fill="#7E6530">guarded Hermes startup banner</text>
 
-  <g transform="translate(70 170)">
-    <text xml:space="preserve" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="19" fill="#FFBF47">
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀
-⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀
-⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    <text xml:space="preserve" x="58" y="118" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="17" fill="#FFBF47">
+      <tspan x="58" dy="0">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</tspan>
+      <tspan x="58" dy="21">⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀</tspan>
+      <tspan x="58" dy="21">⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀</tspan>
+      <tspan x="58" dy="21">⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀</tspan>
+      <tspan x="58" dy="21">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</tspan>
+      <tspan x="58" dy="21">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</tspan>
+      <tspan x="58" dy="21">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</tspan>
+      <tspan x="58" dy="21">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</tspan>
+      <tspan x="58" dy="21">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</tspan>
     </text>
+
+    <text x="26" y="270" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="18" fill="#FFD95A">trusted control / untrusted data</text>
+    <text x="26" y="294" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="15" fill="#7E6530">explicit operator intent required for side effects</text>
   </g>
 
-  <g transform="translate(690 166)">
-    <rect x="0" y="0" width="835" height="280" rx="14" fill="#0D1723" stroke="#A26B1A" stroke-width="1.5" opacity="0.92"/>
-    <text x="28" y="44" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="23" font-weight="700" fill="#FFD54A">What CaMeL Adds</text>
-    <text x="28" y="92" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="21" fill="#E9E1CF">trusted control != untrusted retrieved data</text>
-    <text x="28" y="130" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="21" fill="#E9E1CF">sensitive tools gated against trusted operator intent</text>
-    <text x="28" y="168" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="21" fill="#E9E1CF">indirect prompt-injection paths blocked by default</text>
-    <text x="28" y="206" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="21" fill="#E9E1CF">authorized actions still execute when explicitly requested</text>
-    <text x="28" y="254" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="19" fill="#8E6C21">paper-inspired Hermes runtime implementation</text>
+  <g transform="translate(520 176)">
+    <rect width="1024" height="306" rx="18" fill="#0D1723" stroke="#A56A18" stroke-width="1.5"/>
+    <text x="30" y="42" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="24" font-weight="700" fill="#FFD95A">What this changes in Hermes</text>
+
+    <g transform="translate(26 70)">
+      <rect width="972" height="44" rx="10" fill="#132131" stroke="#223247" stroke-width="1"/>
+      <text x="18" y="28" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="19" fill="#EDE4D4">retrieved content stays evidence, not control</text>
+    </g>
+
+    <g transform="translate(26 126)">
+      <rect width="972" height="44" rx="10" fill="#132131" stroke="#223247" stroke-width="1"/>
+      <text x="18" y="28" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="19" fill="#EDE4D4">terminal, browser, memory, messaging, and file mutations are gated</text>
+    </g>
+
+    <g transform="translate(26 182)">
+      <rect width="972" height="44" rx="10" fill="#132131" stroke="#223247" stroke-width="1"/>
+      <text x="18" y="28" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="19" fill="#EDE4D4">trusted user intent authorizes sensitive tools before execution</text>
+    </g>
+
+    <g transform="translate(26 238)">
+      <rect width="972" height="44" rx="10" fill="#132131" stroke="#223247" stroke-width="1"/>
+      <text x="18" y="28" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="19" fill="#EDE4D4">explicitly authorized tasks still run normally</text>
+    </g>
   </g>
 
-  <text x="692" y="474" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="20" fill="#8E6C21">camelup wires the guarded build into Hermes without replacing your existing branches.</text>
+  <g transform="translate(56 506)">
+    <rect width="1488" height="40" rx="12" fill="#0D1723" stroke="#A56A18" stroke-width="1.5"/>
+    <text x="18" y="26" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="19" fill="#FFD95A">205 runtime tests passed</text>
+    <text x="302" y="26" font-family="Menlo, Monaco, 'Courier New', monospace" font-size="18" fill="#8E6C21">indirect injection checks blocked terminal / messaging / memory / browser side effects while preserving authorized actions</text>
+  </g>
 </svg>
