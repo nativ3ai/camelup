@@ -8,7 +8,7 @@
 
 It is built for one goal:
 
-- wire CaMeL trust boundaries into Hermes without replacing or breaking your existing Hermes checkout
+- wire CaMeL trust boundaries into Hermes without replacing or breaking existing Hermes checkout
 
 `camelup` supports two deployment modes:
 
