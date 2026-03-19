@@ -17,6 +17,23 @@ It is built for one goal:
 
 In the existing-checkout path, `camelup` does **not** overwrite your current branch, rewrite history, or merge over your existing setup.
 
+## Research Provenance
+
+`camelup` installs and wires a Hermes-native integration inspired by Google Research's CaMeL paper and reference repository:
+
+- Paper: https://arxiv.org/abs/2503.18813
+- Research repo: https://github.com/google-research/camel-prompt-injection
+
+The installed runtime does **not** aim to replicate Google's research stack exactly or claim the same evaluation/performance profile. It follows the trust-boundary structure described in the paper, but applies it to Hermes' existing runtime, tools, and conversation loop.
+
+Neither this installer nor the guarded Hermes fork it installs vendors Google source code unless explicitly noted in future changes.
+
+The practical difference is:
+
+- the Google repo is a research artifact built around its own evaluation stack
+- the Hermes integration is a runtime hardening layer built for a real Hermes deployment path
+- the validation here is Hermes-specific rather than a full reproduction of the paper's original benchmark matrix
+
 ## What CaMeL Adds To Hermes
 
 The integrated build adds runtime trust boundaries inside Hermes itself.
@@ -51,6 +68,7 @@ This is designed to make indirect prompt injection materially harder without blo
 - Original Hermes upstream: https://github.com/NousResearch/hermes-agent
 - CaMeL paper: https://arxiv.org/abs/2503.18813
 - CaMeL reference repo: https://github.com/google-research/camel-prompt-injection
+- Third-party notices: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)
 
 ## Install Modes
 
@@ -250,7 +268,7 @@ Summary table:
 
 ### Benchmark scope
 
-This is not presented as a full AgentDojo reproduction.
+This is not presented as a full AgentDojo reproduction or as a claim of benchmark-equivalent performance to the Google research artifact.
 
 It is a Hermes-specific validation pass inspired by the CaMeL paper and adapted to Hermes' runtime, tool semantics, and conversation loop.
 
