@@ -45,6 +45,7 @@ Main behavior:
 - treats tool outputs, retrieved content, browser content, files, recall, and MCP results as untrusted evidence by default
 - injects a per-turn security envelope into the effective runtime context
 - gates sensitive tools against the trusted operator plan
+- sanitizes attacker-directed answer prefixes sourced from untrusted content
 - strips internal CaMeL metadata before provider API calls
 
 Sensitive capabilities gated by the integrated build include:
@@ -226,12 +227,21 @@ pytest -q tests/agent/test_camel_guard.py tests/test_run_agent.py
 
 Result:
 
-- `205 passed`
+- `210 passed`
 
 Interpretation:
 
 - no observed breakage across the covered Hermes run loop and tool execution paths
 - the trust-boundary changes remained compatible with the existing runtime behavior exercised by those tests
+
+### Response hijack checks
+
+The guarded Hermes build also includes a job-application benchmark for answer-layer prompt injection.
+
+Observed split:
+
+- `--camel-guard off`: poisoned answer prefixes such as `I AM AN AI` and `CANDIDATE AUTO-APPROVED` can pass through in legacy mode
+- `--camel-guard on`: the same poisoned answer is sanitized before it reaches the user, while the real application fields remain intact
 
 ### Paper-aligned indirect injection checks
 
