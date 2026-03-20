@@ -4,6 +4,10 @@
   <img src="assets/camel-guard-banner.svg" alt="Hermes Agent CaMeL Guard banner" width="100%">
 </p>
 
+<p align="center">
+  <img src="assets/camel-guard-logo.png" alt="CaMeL Guard logo" width="240">
+</p>
+
 `camelup` is a non-destructive installer for the CaMeL-integrated Hermes build.
 
 It is built for one goal:
