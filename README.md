@@ -75,6 +75,21 @@ This is designed to make indirect prompt injection materially harder without blo
 - CaMeL reference repo: https://github.com/google-research/camel-prompt-injection
 - Third-party notices: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)
 
+## Related Add-On
+
+For payment execution with the same trust-boundary philosophy, use:
+
+- Hermes PayGuard: https://github.com/nativ3ai/hermes-payguard
+
+PayGuard is a separate Hermes plugin for:
+
+- Circle developer-controlled USDC transfers
+- Circle user-controlled transfer challenges
+- Circle CCTP route staging and attestation-aware execution tracking
+- x402 paid resource fetches with micropayment thresholds
+
+It is intentionally separate from `camelup` because payment approval and execution need their own operator boundary and ledger.
+
 ## Install Modes
 
 ### Mode 1: Fresh directory
