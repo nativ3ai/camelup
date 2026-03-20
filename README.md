@@ -1,4 +1,4 @@
-# camelup
+# CaMeL up 🐪
 
 <p align="center">
   <img src="assets/camel-guard-banner.svg" alt="Hermes Agent CaMeL Guard banner" width="100%">
