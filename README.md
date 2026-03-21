@@ -92,6 +92,28 @@ It is intentionally separate from `camelup` because payment approval and executi
 
 ## Install Modes
 
+## Install
+
+### Homebrew
+
+```bash
+brew tap nativ3ai/camelup
+brew install camelup
+```
+
+Or directly:
+
+```bash
+brew install nativ3ai/camelup/camelup
+```
+
+### Raw script
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/nativ3ai/camelup/main/bin/camelup -o /tmp/camelup
+chmod +x /tmp/camelup
+```
+
 ### Mode 1: Fresh directory
 
 Use this if you want a dedicated Hermes checkout that already includes the CaMeL integration.
