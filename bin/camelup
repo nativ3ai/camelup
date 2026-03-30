@@ -9,7 +9,7 @@ from pathlib import Path
 
 CAMEL_REPO = "https://github.com/nativ3ai/hermes-agent-camel.git"
 CAMEL_REMOTE = "camel"
-CAMEL_BRANCH = "main"
+CAMEL_BRANCH = "feat/camel-live-benchmark-refresh"
 LOCAL_BRANCH = "camel-main"
 
 
@@ -52,6 +52,7 @@ def status(target: Path) -> int:
     print(f"OK rev={rev}")
     print(f"OK camel_remote={'yes' if CAMEL_REMOTE in remotes else 'no'}")
     print(f"OK camel_branch={'yes' if branch == LOCAL_BRANCH else 'no'}")
+    print(f"OK source_branch={CAMEL_BRANCH}")
     return 0
 
 
@@ -77,7 +78,7 @@ def clone_install(target: Path) -> int:
     if target.exists() and not any(target.iterdir()):
         target.rmdir()
     print(f"Cloning {CAMEL_REPO} -> {target}")
-    subprocess.run(["git", "clone", CAMEL_REPO, str(target)], check=True)
+    subprocess.run(["git", "clone", "--branch", CAMEL_BRANCH, CAMEL_REPO, str(target)], check=True)
     return 0
 
 
@@ -100,10 +101,37 @@ def apply_to_existing(target: Path) -> int:
     return 0
 
 
+def update(target: Path) -> int:
+    if not target.exists():
+        raise SystemExit(f"Target {target} does not exist.")
+    if not looks_like_git_repo(target):
+        raise SystemExit(f"Target {target} is not a git repository.")
+    if not looks_like_hermes(target):
+        raise SystemExit(f"Target {target} does not look like a Hermes checkout.")
+    ensure_clean_repo(target)
+
+    branch = run(["git", "branch", "--show-current"], cwd=target).stdout.strip()
+    remotes = run(["git", "remote"], cwd=target).stdout.split()
+    if CAMEL_REMOTE in remotes:
+        run(["git", "remote", "set-url", CAMEL_REMOTE, CAMEL_REPO], cwd=target)
+    else:
+        run(["git", "remote", "add", CAMEL_REMOTE, CAMEL_REPO], cwd=target)
+
+    if branch == LOCAL_BRANCH:
+        run(["git", "fetch", "origin", "main"], cwd=target, check=False)
+        run(["git", "fetch", CAMEL_REMOTE, CAMEL_BRANCH], cwd=target)
+        run(["git", "reset", "--hard", f"{CAMEL_REMOTE}/{CAMEL_BRANCH}"], cwd=target)
+        print(f"Updated {LOCAL_BRANCH} to {CAMEL_REMOTE}/{CAMEL_BRANCH}")
+        return 0
+
+    return apply_to_existing(target)
+
+
 def verify(target: Path) -> int:
     required = [
         target / "agent" / "camel_guard.py",
         target / "docs" / "camel-benchmark.md",
+        target / "docs" / "camel-live-runtime-comparison.md",
         target / "tests" / "agent" / "test_camel_guard.py",
     ]
     missing = [str(path) for path in required if not path.exists()]
@@ -117,6 +145,7 @@ def verify(target: Path) -> int:
     print(f"OK target={target}")
     print(f"OK branch={branch}")
     print(f"OK rev={rev}")
+    print(f"OK source_branch={CAMEL_BRANCH}")
     print("OK camel files present")
     return 0
 
@@ -136,6 +165,9 @@ def main() -> int:
     install_parser = sub.add_parser("install", help="Clone the fork or attach it to an existing Hermes checkout")
     install_parser.add_argument("--target", required=True, help="Target directory")
 
+    update_parser = sub.add_parser("update", help="Refresh an installed CaMeL checkout to the latest guarded branch")
+    update_parser.add_argument("--target", required=True, help="Target directory")
+
     verify_parser = sub.add_parser("verify", help="Verify a target checkout contains the CaMeL integration")
     verify_parser.add_argument("--target", required=True, help="Target directory")
 
@@ -148,6 +180,8 @@ def main() -> int:
         return doctor()
     if args.command == "install":
         return install(Path(args.target).expanduser().resolve())
+    if args.command == "update":
+        return update(Path(args.target).expanduser().resolve())
     if args.command == "verify":
         return verify(Path(args.target).expanduser().resolve())
     if args.command == "status":

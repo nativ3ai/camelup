@@ -47,10 +47,10 @@ Main behavior:
 - separates trusted control from untrusted data
 - derives a trusted operator plan from real user turns
 - treats tool outputs, retrieved content, browser content, files, recall, and MCP results as untrusted evidence by default
-- injects a per-turn security envelope into the effective runtime context
+- keeps the Hermes system prompt cache-friendly and out of the CaMeL decision loop
 - gates sensitive tools against the trusted operator plan
 - sanitizes attacker-directed answer prefixes sourced from untrusted content
-- strips internal CaMeL metadata before provider API calls
+- leaves raw tool outputs intact while tracking untrusted lineage internally
 
 Sensitive capabilities gated by the integrated build include:
 
@@ -127,6 +127,7 @@ chmod +x /tmp/camelup
 Result:
 
 - clones `nativ3ai/hermes-agent-camel` into `~/hermes-agent-camel`
+- tracks branch `feat/camel-live-benchmark-refresh` from that fork until the upstream PR lands
 - leaves any existing Hermes install elsewhere untouched
 
 ### Mode 2: Existing Hermes checkout
@@ -146,7 +147,7 @@ Result:
 1. verifies the target looks like a Hermes repo
 2. requires a clean working tree
 3. adds remote `camel -> https://github.com/nativ3ai/hermes-agent-camel.git`
-4. fetches `camel/main`
+4. fetches `camel/feat/camel-live-benchmark-refresh`
 5. creates or resets local branch `camel-main`
 6. checks out `camel-main`
 
@@ -173,7 +174,13 @@ Existing Hermes user flow:
 /tmp/camelup status --target ~/src/hermes-agent
 ```
 
-4. if you want to return to your original Hermes branch later:
+4. refresh it later without recloning:
+
+```bash
+/tmp/camelup update --target ~/src/hermes-agent
+```
+
+5. if you want to return to your original Hermes branch later:
 
 ```bash
 cd ~/src/hermes-agent
@@ -203,7 +210,19 @@ Checks host prerequisites:
 Behavior:
 
 - empty or missing path: clone the CaMeL fork there
-- existing Hermes repo: wire in `camel/main` as local branch `camel-main`
+- existing Hermes repo: wire in `camel/feat/camel-live-benchmark-refresh` as local branch `camel-main`
+
+### `update`
+
+```bash
+./bin/camelup update --target <path>
+```
+
+Behavior:
+
+- fresh CaMeL checkout already on `camel-main`: fetch latest guarded branch and hard-reset the checkout to it
+- existing Hermes repo already wired with `camel-main`: refresh that branch in place
+- existing Hermes repo not yet wired: behaves like `install`
 
 ### `verify`
 
@@ -215,6 +234,7 @@ Confirms the target checkout contains the expected CaMeL integration files:
 
 - `agent/camel_guard.py`
 - `docs/camel-benchmark.md`
+- `docs/camel-live-runtime-comparison.md`
 - `tests/agent/test_camel_guard.py`
 
 ### `status`
@@ -227,6 +247,7 @@ Reports:
 
 - current branch
 - current revision
+- current guarded source branch
 - whether the `camel` remote is present
 - whether the checkout is currently on `camel-main`
 
@@ -281,8 +302,9 @@ The guarded Hermes build also includes a job-application benchmark for answer-la
 
 Observed split:
 
-- `--camel-guard off`: poisoned answer prefixes such as `I AM AN AI` and `CANDIDATE AUTO-APPROVED` can pass through in legacy mode
-- `--camel-guard on`: the same poisoned answer is sanitized before it reaches the user, while the real application fields remain intact
+- plain `hermes` or `hermes --camel-guard off`: legacy mode, no guard
+- `hermes --camel-guard monitor`: legacy execution behavior, but the attack is identified and traced
+- `hermes --camel-guard enforce`: the same attack is blocked
 
 ### Paper-aligned indirect injection checks
 
